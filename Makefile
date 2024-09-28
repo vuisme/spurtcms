@@ -2,7 +2,7 @@ run:
 	go run main.go
 
 buildwithview:
-	mkdir build
+	mkdir -p build
 	cp -r lang build
 	cp -r locales build
 	cp -r public build
