@@ -1,5 +1,8 @@
-# Sử dụng image Go chính thức từ DockerHub
+# Sử dụng image Go chính thức từ DockerHub cho bước build
 FROM golang:1.20-alpine AS build
+
+# Cài đặt make và các dependencies cần thiết
+RUN apk add --no-cache make gcc libc-dev
 
 # Đặt thư mục làm việc là /app
 WORKDIR /app
@@ -11,7 +14,7 @@ RUN go mod download
 # Sao chép toàn bộ mã nguồn vào container
 COPY . .
 
-# Build ứng dụng Go sử dụng lệnh make buildwithview
+# Build ứng dụng Go sử dụng Makefile
 RUN make buildwithview
 
 # Sử dụng image Alpine nhỏ gọn để chạy ứng dụng
